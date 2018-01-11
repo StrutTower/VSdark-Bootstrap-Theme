@@ -8,11 +8,11 @@ var gulp = require('gulp'),
 
 var options = {
     sass: {
-        src: ['src/vsDark.scss', 'src/vsDarkwithWebfont.scss'],
+        src: ['src/vsDark.scss'],
         files: 'src/**/*.scss',
         dest: 'dist'
     }
-}
+};
 
 gulp.task('default', ['sass']);
 
@@ -23,7 +23,7 @@ gulp.task('sass', function () {
             errLogToConsole: true,
             precision: 10
         })
-        .on('error', sass.logError))
+            .on('error', sass.logError))
         .pipe(gulp.dest(options.sass.dest))
         .pipe(rename({
             suffix: '.min'
@@ -36,4 +36,4 @@ gulp.task('sass', function () {
 
 gulp.task('sass-watch', function () {
     return gulp.watch(options.sass.files, ['sass']);
-})
+});
