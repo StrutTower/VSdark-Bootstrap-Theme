@@ -29,8 +29,8 @@ $success: darken(#5cb85c, 10) !default;
 $info: darken(#56ccb3, 15) !default;
 $warning: #d5702c !default;
 $danger: #dc3b36 !default;
-$light: #f8f9fa !default;
-$dark: #343a40 !default;
+$light: $gray-100 !default;
+$dark: $gray-800 !default;
 
 $border-radius: 0;
 $border-radius-lg: 0 !default;

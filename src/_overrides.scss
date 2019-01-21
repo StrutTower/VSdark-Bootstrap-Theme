@@ -155,8 +155,20 @@
     color: $body-color;
 }
 
+.text-dark {
+    color: lighten($dark, 15) !important;
+}
+
 .bg-light {
     color: $gray-800;
+}
+
+.btn-outline-dark {
+    color: $gray-600;
+
+    &:disabled, &.disabled {
+        color: darken($gray-600, 5);
+    }
 }
 
 hr {

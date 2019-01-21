@@ -1,10 +1,8 @@
 ﻿/// <binding ProjectOpened='sass-watch' />
-
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
-    cssMin = require('gulp-cssmin');
-    rename = require('gulp-rename'),
-    replace = require('gulp-replace');
+    cleancss = require('gulp-clean-css'),
+    rename = require('gulp-rename');
 
 var options = {
     sass: {
@@ -14,9 +12,7 @@ var options = {
     }
 };
 
-gulp.task('default', ['sass']);
-
-
+// Tasks
 gulp.task('sass', function () {
     return gulp.src(options.sass.src)
         .pipe(sass({
@@ -28,12 +24,14 @@ gulp.task('sass', function () {
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(cssMin({
-            keepSpecialComments: 0
+        .pipe(cleancss({
+            level: { 1: { specialComments: 0 } }
         }))
         .pipe(gulp.dest(options.sass.dest));
 });
 
 gulp.task('sass-watch', function () {
-    return gulp.watch(options.sass.files, ['sass']);
+    return gulp.watch(options.sass.files, gulp.series('sass'));
 });
+
+gulp.task('default', gulp.parallel('sass'));
